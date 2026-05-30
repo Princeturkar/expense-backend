@@ -14,8 +14,9 @@ public class CorsConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        // Allow frontend localhost ports
+        // Allow localhost and Vercel frontend
         config.addAllowedOriginPattern("http://localhost:*");
+        config.addAllowedOriginPattern("https://expense-tracker-sepia-phi-13.vercel.app");
 
         // Allow all headers
         config.addAllowedHeader("*");
