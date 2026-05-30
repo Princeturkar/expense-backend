@@ -6,6 +6,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.Arrays;
+
 @Configuration
 public class CorsConfig {
 
@@ -14,17 +16,17 @@ public class CorsConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        // Allow localhost and Vercel frontend
-        config.addAllowedOriginPattern("http://localhost:*");
-        config.addAllowedOriginPattern("https://expense-tracker-sepia-phi-13.vercel.app");
+        config.setAllowedOrigins(Arrays.asList(
+                "http://localhost:5173",
+                "https://expense-tracker-sepia-phi-13.vercel.app"
+        ));
 
-        // Allow all headers
-        config.addAllowedHeader("*");
+        config.setAllowedMethods(Arrays.asList(
+                "GET", "POST", "PUT", "DELETE", "OPTIONS"
+        ));
 
-        // Allow all methods
-        config.addAllowedMethod("*");
+        config.setAllowedHeaders(Arrays.asList("*"));
 
-        // Allow credentials
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source =
